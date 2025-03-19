@@ -1,4 +1,4 @@
-# API Documentation
+# Assignment 1 API Docs
 
 Base URL: `https://w23003084.nuwebspace.co.uk/as1/`
 
