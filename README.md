@@ -8,7 +8,7 @@ All endpoints require an API key in the `X-API-KEY` header.
 
 **Example:** `X-API-KEY: w23003084apikey`
 
-## 1. Developer Information
+## Task 1: Developer Information
 
 *   **Endpoint:** `GET https://w23003084.nuwebspace.co.uk/as1/api/developer`
 *   **Description:** Retrieves developer information (student ID and name).
@@ -21,13 +21,54 @@ All endpoints require an API key in the `X-API-KEY` header.
     }
     ```
 
-## 2. Authors
+## Task 2: Author Endpoint (GET)
 
 *   **Endpoint:** `GET https://w23003084.nuwebspace.co.uk/as1/api/author`
 *   **Description:** Retrieves a list of authors.
 *   **Parameters:**
     *   `author_id` (optional): Integer.  Retrieves a specific author by ID.
     *   `content_id` (optional): Integer. Retrieves authors associated with a specific content ID.
+*   **Response:**
+
+    ```json
+    [
+      {
+        "author_id": 1,
+        "name": "Author Name"
+      }
+    ]
+    ```
+
+## Task 3: Content Endpoint (GET)
+
+*   **Endpoint:** `GET https://w23003084.nuwebspace.co.uk/as1/api/content`
+*   **Description:** Retrieves content information, including related data (type and award names).
+*   **Parameters:**
+    *   `content_id` (optional): Integer. Retrieves a specific content item by ID.
+    *   `author_id` (optional): Integer. Retrieves content items associated with a specific author ID.
+*   **Response:**
+
+    ```json
+    [
+      {
+        "content_id": 1,
+        "title": "Content Title",
+        "abstract": "Content abstract...",
+        "doi_link": "doi link",
+        "preview_video": "link to video",
+        "type": "Type",
+        "award": "Award"
+      }
+    ]
+    ```
+
+## Task 4: Enhance Author/Content Endpoints
+
+### Author Endpoint Enhancements
+
+*   **Endpoint:** `GET https://w23003084.nuwebspace.co.uk/as1/api/author`
+*   **Description:** Retrieves a list of authors with search and pagination.
+*   **Parameters:**
     *   `search` (optional): String. Searches authors by name.
     *   `page` (optional): Integer. Specifies the page number for pagination (10 items per page).
 *   **Response:**
@@ -41,13 +82,11 @@ All endpoints require an API key in the `X-API-KEY` header.
     ]
     ```
 
-## 3. Content
+### Content Endpoint Enhancements
 
 *   **Endpoint:** `GET https://w23003084.nuwebspace.co.uk/as1/api/content`
-*   **Description:** Retrieves content items.
+*   **Description:** Retrieves content items with search and pagination.
 *   **Parameters:**
-    *   `content_id` (optional): Integer. Retrieves a specific content item by ID.
-    *   `author_id` (optional): Integer. Retrieves content items associated with a specific author ID.
     *   `search` (optional): String. Searches content items by title or abstract.
     *   `page` (optional): Integer. Specifies the page number for pagination (10 items per page).
 *   **Response:**
@@ -66,9 +105,9 @@ All endpoints require an API key in the `X-API-KEY` header.
     ]
     ```
 
-## 4. Awards
+## Task 5: Award Endpoint (GET/POST/PATCH/DELETE)
 
-### 4.1. Get Awards
+### 5.1. Get Awards
 
 *   **Endpoint:** `GET https://w23003084.nuwebspace.co.uk/as1/api/award`
 *   **Description:** Retrieves a list of awards.
@@ -83,7 +122,7 @@ All endpoints require an API key in the `X-API-KEY` header.
     ]
     ```
 
-### 4.2. Create Award
+### 5.2. Create Award
 
 *   **Endpoint:** `POST https://w23003084.nuwebspace.co.uk/as1/api/award`
 *   **Description:** Creates a new award.
@@ -95,7 +134,7 @@ All endpoints require an API key in the `X-API-KEY` header.
     }
     ```
 
-### 4.3. Update Award
+### 5.3. Update Award
 
 *   **Endpoint:** `PATCH https://w23003084.nuwebspace.co.uk/as1/api/award`
 *   **Description:** Updates an existing award.
@@ -108,7 +147,7 @@ All endpoints require an API key in the `X-API-KEY` header.
     }
     ```
 
-### 4.4. Delete Award
+### 5.4. Delete Award
 
 *   **Endpoint:** `DELETE https://w23003084.nuwebspace.co.uk/as1/api/award`
 *   **Description:** Deletes an award.
@@ -120,9 +159,9 @@ All endpoints require an API key in the `X-API-KEY` header.
     }
     ```
 
-## 5. Manage Awards (Content <-> Award Association)
+## Task 6: Award Assignment Endpoint
 
-### 5.1. Assign Award to Content
+### 6.1. Assign Award to Content
 
 *   **Endpoint:** `POST https://w23003084.nuwebspace.co.uk/as1/api/manage_awards`
 *   **Description:** Assigns an award to a content item.
@@ -135,7 +174,7 @@ All endpoints require an API key in the `X-API-KEY` header.
     }
     ```
 
-### 5.2. Remove Award from Content
+### 6.2. Remove Award from Content
 
 *   **Endpoint:** `DELETE https://w23003084.nuwebspace.co.uk/as1/api/manage_awards`
 *   **Description:** Removes an award from a content item.
@@ -143,6 +182,7 @@ All endpoints require an API key in the `X-API-KEY` header.
 
     ```json
     {
-      "content_id": 1
+      "content_id": 1,
+      "award_id": 1
     }
     ```
